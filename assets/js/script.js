@@ -36,6 +36,12 @@ var CANVAS = (function(can, u, d, dr, n, s){
                 var heightCanvas = img.height / (img.width / largest);  
                 canvas.width = canvas2.width = largest;
                 canvas.height = canvas2.height = heightCanvas;
+
+                if(heightCanvas > 400){
+                    var widthCanvas = img.width / (img.height / 300);  
+                    canvas.width = canvas2.width = widthCanvas;
+                    canvas.height = canvas2.height = 300;
+                }
             }
             
             var heightCanvas3 = img.height / (img.width / largestSmall);  
@@ -44,11 +50,23 @@ var CANVAS = (function(can, u, d, dr, n, s){
         } else {
             var widthCanvas = img.width / (img.height / highest);  
             canvas.width = canvas2.width = widthCanvas;
-            canvas.height = canvas2.height = highest;    
+            canvas.height = canvas2.height = highest;   
             
             var widthCanvas3 = img.width / (img.height / largestSmall);  
             canvas3.width = widthCanvas3;
-            canvas3.height = largestSmall;    
+            canvas3.height = largestSmall;   
+            
+            // When the image is narrow and very high, resize to a normal ratio
+            let ratioSuperH = img.height / (img.width / 600);
+            let incH = 20;
+            while(ratioSuperH > highest){
+                ratioSuperH = img.height / (img.width / (600-incH));
+                incH += 100;
+            }
+            canvas.width = canvas2.width = img.width / (img.height / ratioSuperH);
+            canvas.height = canvas2.height = ratioSuperH;  
+            
+            
         }
         ctx.drawImage(img,0,0,img.width,img.height,0,0,canvas.width, canvas.height);
     
@@ -268,8 +286,12 @@ var CANVAS = (function(can, u, d, dr, n, s){
     var actionCopy = function(e){
         document.execCommand("copy");
     }
+    
+    let allowCopy = false;
     var copyToClipboard = function(e){   
         e.preventDefault();
+        
+        if(!allowCopy) return;
         
         // remove any copy of the copied alert
         if(this.parentElement.children.length > 2 ) {
@@ -322,6 +344,7 @@ var CANVAS = (function(can, u, d, dr, n, s){
 
     
     var displayCodes = function(name, hsv, cmjn, lab, hsl, hex, rgb){
+        if(!allowCopy) { allowCopy = true };
         document.body.classList.add('codes--active');
                 
         let randomNumber = u.randomNumber(name.length, name),
@@ -342,7 +365,7 @@ var CANVAS = (function(can, u, d, dr, n, s){
     
     var initialize = function(){
         init = true;
-        img.src = "assets/img/img10.jpg";
+        img.src = "assets/img/img_init.jpg";
     }
     
     // hide overlay of codes
@@ -370,9 +393,20 @@ var CANVAS = (function(can, u, d, dr, n, s){
         setTimeout(function(){
             help.classList.add('help--active');
             window.addEventListener('click', hideHelpOverlay);
+            
         }, 150);
         
     }
+    
+    document.querySelector('.help__close').addEventListener('click', function(){
+        overlayHelp.classList.remove('overlay--active');
+        help.classList.remove('help--active');
+
+        setTimeout(function(){
+        help.classList.remove('help--ready');
+            window.removeEventListener('click', hideHelpOverlay);
+        }, 150);
+    });
     
     function hideHelpOverlay(e){
             if (!help.contains(e.target)){
@@ -388,6 +422,7 @@ var CANVAS = (function(can, u, d, dr, n, s){
     
     helpIcon.addEventListener('click', displayHelp);
     
+
     var faq = function(){
         let p = this.parentElement;
         if(p.classList.contains('help__question--active')){

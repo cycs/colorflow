@@ -7,9 +7,6 @@
  * 2. Prevent adjustments of font size after orientation changes in
  *    IE on Windows Phone and in iOS.
  */
-@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,700);
-@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
-@import url(https://fonts.googleapis.com/css?family=Oleo+Script:400,700);
 html {
   line-height: 1.15;
   /* 1 */
@@ -445,7 +442,6 @@ textarea {
 /*-----------------------------------------------------------------------------------*/
 /*  Config
 /*-----------------------------------------------------------------------------------*/
-
 @font-face {
     font-family: 'ddin-condensed';
     src: url('./assets/fonts/d-dincondensed-bold-webfont.woff2') format('woff2'),
@@ -499,7 +495,7 @@ body {
   line-height: 1;
   color: #000; }
   .title--tiny {
-    font-size: 16px; }
+    font-size: 18px; }
   .title--normal {
     font-size: 20px; }
   .title--bold {
@@ -824,7 +820,7 @@ p {
             background-position: center;
             background-size: 20px 20px; } }
       .header__social .icon--help {
-        background: url("./assets/img/help_icon.svg") no-repeat;
+        background: url("./assets/img/help_icon_svg.svg") no-repeat;
         background-size: contain; }
         @media (max-width: 500px) {
           .header__social .icon--help {
@@ -896,19 +892,30 @@ p {
             display: none; } }
         .header__nav ul .egg p {
           margin: 0; }
-        .header__nav ul .egg:after {
-          width: 0; }
+        .header__nav ul .egg:hover::after {
+          height: 0; }
       .header__nav ul li {
         position: relative;
         margin: 0; }
         @media (max-width: 1024px) {
           .header__nav ul li {
-            margin-left: 28px; } }
-        @media (max-height: 800px) and (min-width: 500px) {
+            margin-left: 56px; } }
+        @media (max-width: 800px) {
           .header__nav ul li {
             margin-left: 28px; } }
+        @media all and (min-width: 800px) and (max-height: 820px) {
+          .header__nav ul li {
+            margin-left: 56px; } }
+        @media all and (min-width: 1400px) and (max-height: 820px) {
+          .header__nav ul li {
+            margin-left: 112px; } }
         @media (max-width: 400px) {
           .header__nav ul li {
+            margin-left: 28px;
+            font-size: 14px; } }
+        @media (max-width: 400px) {
+          .header__nav ul li {
+            margin-left: 28px;
             font-size: 14px; } }
         .header__nav ul li:after {
           -webkit-animation: border100 .7s forwards;
@@ -946,7 +953,9 @@ p {
       align-content: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
   @media (max-width: 1024px) {
     .settings {
       margin-top: 60px;
@@ -958,7 +967,7 @@ p {
   @media (max-width: 800px) {
     .settings {
       margin: 90px auto 0 auto;
-      width: 80%;
+      width: 100%;
       display: block;
       border-right: 0; } }
   @media (max-height: 800px) and (min-width: 500px) {
@@ -971,9 +980,49 @@ p {
       padding-top: 28px;
       display: block; } }
 
+.canvas__container {
+  width: 100%;
+  height: calc(60% - 56px);
+  margin-bottom: 56px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  @media (max-width: 800px) {
+    .canvas__container {
+      margin-bottom: 0; } }
+  .canvas__container .canvas__advice {
+    position: relative;
+    font-size: 18px;
+    margin: 28px 0 0 48px; }
+    @media (max-width: 800px) {
+      .canvas__container .canvas__advice {
+        display: none; } }
+    @media (hover: none) {
+      .canvas__container .canvas__advice {
+        display: none; } }
+    .canvas__container .canvas__advice:before {
+      content: '';
+      position: absolute;
+      background: url("./assets/img/drawMouse.svg") no-repeat;
+      width: 30px;
+      height: 30px;
+      display: block;
+      left: -40px;
+      top: 4px; }
+
 .canvas {
   position: relative;
-  margin: 0 auto 70px auto;
+  margin: 0 auto;
   max-width: 600px;
   z-index: 2;
   -ms-flex-line-pack: center;
@@ -981,9 +1030,6 @@ p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
-  @media (min-width: 1600px) {
-    .canvas {
-      width: 80%; } }
   @media (max-width: 1200px) {
     .canvas {
       max-width: 600px; } }
@@ -997,14 +1043,15 @@ p {
   @media (hover: none) {
     .canvas {
       margin: 28px auto 28px auto; } }
+  @media all and (min-width: 1024px) and (min-height: 820px) {
+    .canvas {
+      max-width: 600px; } }
   @media all and (min-width: 800px) and (max-height: 820px) {
     .canvas {
-      margin: 20px auto 92px auto;
-      max-width: 400px; } }
+      max-width: 600px; } }
   @media all and (min-width: 800px) and (max-height: 820px) and (hover: none) {
     .canvas {
-      margin: 20px auto 56px auto;
-      max-width: 400px; } }
+      max-width: 600px; } }
   @media (max-height: 800px) and (min-width: 500px) {
     .canvas {
       max-width: 600px; } }
@@ -1030,6 +1077,9 @@ p {
       padding: 0 28px;
       text-align: center;
       position: relative; }
+      @media (max-width: 1350px) {
+        .canvas .description p {
+          font-size: 24px; } }
       @media (max-width: 800px) {
         .canvas .description p {
           color: rgba(255, 255, 255, 0.9);
@@ -1037,34 +1087,15 @@ p {
       @media all and (min-width: 800px) and (max-height: 820px) {
         .canvas .description p {
           font-size: 24px; } }
-  .canvas__advice {
-    position: absolute;
-    font-size: 18px;
-    left: 40px;
-    margin: 28px;
-    margin-left: 48px; }
-    @media (max-width: 800px) {
-      .canvas__advice {
-        display: none; } }
-    @media (hover: none) {
-      .canvas__advice {
-        display: none; } }
-    .canvas__advice:before {
-      content: '';
-      position: absolute;
-      background: url("./assets/img/drawMouse.svg") no-repeat;
-      width: 30px;
-      height: 30px;
-      display: block;
-      left: -40px;
-      top: 4px; }
   .canvas__main {
     display: block;
     border-radius: 6px;
-    width: 100%; }
+    max-width: 100%;
+    max-height: 100%; }
     @media (min-width: 1600px) {
       .canvas__main {
-        width: 100%; } }
+        max-width: 100%;
+        max-height: 100%; } }
     @media (max-width: 800px) {
       .canvas__main {
         border-radius: 6px; } }
@@ -1075,6 +1106,7 @@ p {
     position: absolute;
     top: 0;
     max-width: 100%;
+    max-height: 100%;
     left: 0;
     -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
             box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
@@ -1083,7 +1115,8 @@ p {
     cursor: url("./assets/img/cursor_draw_small.png"), auto; }
     @media (min-width: 1600px) {
       .canvas__drawon {
-        width: 100%; } }
+        max-width: 100%;
+        max-height: 100%; } }
     @media (max-width: 1200px) {
       .canvas__drawon {
         -webkit-box-shadow: none;
@@ -1161,10 +1194,12 @@ p {
             flex-direction: column;
     background: rgba(255, 255, 255, 0.6);
     font-size: 28px;
-    z-index: 3; }
+    z-index: 3;
+    color: #000; }
     @media (max-width: 1200px) {
       .canvas .upload {
-        border-radius: 0; } }
+        border-radius: 0;
+        font-size: 20px; } }
     @media (max-width: 800px) {
       .canvas .upload {
         display: none; } }
@@ -1206,7 +1241,7 @@ p {
         top: 0;
         width: auto;
         height: auto;
-        background: url(assets/img/upload_icon.svg) no-repeat 50% 75%, rgba(0, 0, 0, 0.6);
+        background: url(./assets/img/upload_icon.svg) no-repeat 50% 75%, rgba(0, 0, 0, 0.6);
         background-size: 20px; } }
     .canvas .upload__icon:hover {
       background: url("./assets/img/upload_icon.svg") no-repeat center, black;
@@ -1229,7 +1264,7 @@ p {
         .canvas .upload__icon:active {
           -webkit-transform: scale(1);
                   transform: scale(1);
-          background: url("./assets/img/upload_icon.svg") no-repeat 50% 75%, rgba(41, 65, 81, 0.9);
+          background: url(./assets/img/upload_icon.svg) no-repeat 50% 75%, rgba(41, 65, 81, 0.9);
           background-size: 20px; } }
     @media (max-width: 800px) {
       .canvas .upload__icon:focus {
@@ -1903,6 +1938,41 @@ p {
       background: none; }
     .help__question--active h3:hover:after {
       background: none; }
+  .help__close {
+    position: absolute;
+    display: block;
+    width: 40px;
+    margin: 0 auto;
+    padding: 0;
+    background: none;
+    border: none;
+    height: 40px;
+    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-transition: .2s ease;
+    transition: .2s ease; }
+    .help__close:hover:after, .help__close:hover:before {
+      background: rgba(0, 0, 0, 0.6); }
+    .help__close:active {
+      background: rgba(0, 0, 0, 0.1); }
+    .help__close:before, .help__close:after {
+      position: absolute;
+      top: 5px;
+      left: 18px;
+      content: '';
+      height: 30px;
+      width: 3px;
+      background: #000; }
+    .help__close:before {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+    .help__close:after {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg); }
   .help__title {
     margin: 0;
     font-size: 36px; }
@@ -2222,7 +2292,7 @@ ul {
   display: -ms-flexbox;
   display: flex;
   padding: 0;
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -2232,16 +2302,16 @@ ul {
       -ms-flex-align: center;
           align-items: center;
   font-size: 18px;
-  height: 50%;
+  height: 40%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly; }
   @media (max-width: 1200px) {
     .controls {
       width: 100%; } }
-  @media (max-width: 1200px) {
+  @media (max-width: 800px) {
     .controls {
-      margin-bottom: 30px; } }
+      margin-bottom: 56px; } }
   @media (max-height: 800px) and (min-width: 500px) {
     .controls {
       max-width: 500px;
@@ -2363,8 +2433,8 @@ ul {
         margin: 0 auto; } }
     @media all and (min-width: 800px) and (max-height: 820px) {
       .controls .radial {
-        width: 280px;
-        height: 280px; } }
+        width: 200px;
+        height: 200px; } }
     .controls .radial__label {
       position: absolute;
       z-index: 2;

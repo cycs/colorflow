@@ -11,14 +11,20 @@ var RADIAL = function(circle, button, input, defaultvalue){
     
     circle.addEventListener("mousedown", () => is_dragging = true, {passive: true});
     circle.addEventListener("touchstart", () => {
-        is_dragging = true;       document.body.classList.add('disableScroll');
-    }, {passive: true});
+        is_dragging = true;       
+        document.body.classList.add('disableScroll');
+    });
     document.addEventListener("mouseup", () => {
         is_dragging = false; 
     });
     document.addEventListener("touchend", () => {
         is_dragging = false;
         document.body.classList.remove('disableScroll');
+    }); 
+    document.addEventListener("touchmove", (e) => {
+        if(is_dragging){
+            e.preventDefault();
+        }
     });
     
     var changeValue = function(e) {

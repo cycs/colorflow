@@ -16,6 +16,7 @@ var DRAW = (function(d, u){
         offsetTopB = u.getOffsetTop(bod);
     
     var drawClip = function(e){
+        
         if (!isDrawing || !isInCanvas) return;       
             
             rect.w = e.pageX - rect.startXb;
@@ -30,10 +31,11 @@ var DRAW = (function(d, u){
             widthRatio = rect.w/ratioX,
             heightRatio = rect.h/ratioY;    
         
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        ctx.clearRect(0, 0, canvas.clientWidth*2, canvas.clientHeight*2);
         
         ctx.beginPath(); // Without it, rectangles are saved then redrawn
         ctx.fillStyle="rgba(255, 255, 255, .6)";
+        
         ctx.fillRect(startXRatio, startYRatio, widthRatio, heightRatio);
         
 
@@ -41,7 +43,6 @@ var DRAW = (function(d, u){
 
     canvas.addEventListener('mousedown', (e) => {
         isDrawing = true;
-        document.querySelector('body').classList.add('noselect');
 
         if(e.target.id == "canvas2"){
             isInCanvas = true;
@@ -69,7 +70,7 @@ var DRAW = (function(d, u){
             return false;
         };
 
-        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+        ctx.clearRect(0,0,canvas.clientWidth*2,canvas.clientHeight*2);
         ctx.rect(startXRatio, startYRatio, widthRatio, heightRatio);
         ctx.strokeStyle = "#fff";
         ctx.lineWidth = 2;

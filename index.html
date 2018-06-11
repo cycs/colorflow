@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="FR">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
    
      <!-- Méta Google -->
@@ -39,7 +39,7 @@
     <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Colorflow - obtenez votre palette de couleurs</title>
+    <title>Home | Colorflow</title>
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -146,20 +146,22 @@
    </header>
     <section class="settings clearfix">
        <h2 class="hide">Paramètres</h2>
-        <div class="canvas">
-            <div class="description">
-                <p class="title title--up title--bold">Crée une palette de couleurs à partir de tes photos.</p>
-            </div>
-            <canvas id="canvas" class="canvas__main"></canvas>
-            <canvas id="canvas2" class="canvas__drawon"></canvas>
-            <canvas id="canvas3" class="canvas__quality"></canvas>
-            <div class="upload__icon">Upload file icon</div>
-            <div class="upload">
-                <span>Drag &amp; drop ton image ici</span>
-                <input class="upload__image" type="file" name="pic" accept="image/*">
-            </div>
-            <p class="canvas__advice">Sélectionne une zone de l’image pour en récupérer sa palette.</p>
+       <div class="canvas__container">
+            <div class="canvas">
+                <div class="description">
+                    <p class="title title--up title--bold">Crée une palette de couleurs à partir de tes photos.</p>
+                </div>
+                <canvas id="canvas" class="canvas__main"></canvas>
+                <canvas id="canvas2" class="canvas__drawon"></canvas>
+                <canvas id="canvas3" class="canvas__quality"></canvas>
+                <div class="upload__icon">Upload file icon</div>
+                <div class="upload">
+                    <span>Drag &amp; drop ton image ici</span>
+                    <input class="upload__image" type="file" name="pic" accept="image/*">
+                </div>
         </div> 
+            <p class="canvas__advice">Sélectionne une zone de l’image pour en récupérer sa palette.</p>
+        </div>
         <ul class="controls">
             <li class="tg-list-item">
                 <input class="tgl tgl-light" id="cb1" type="checkbox"/>
@@ -235,6 +237,7 @@
             <h3 class="question__title title title--small">Qu'est-ce que le Kolodex ?</h3>
             <p class="answer">Il y a 1&nbsp;703 couleurs, attrapez-les toutes&nbsp;!</p>
         </div>
+        <button class="help__close">fermer</button>
     </section>    
     <div class="overlay"></div>
     <div class="cookies">
@@ -242,7 +245,6 @@
         <button class="cookies__button">OK</button>
     </div>
     <div class="containerColor"></div>
-
     <script src="./assets/js/radialinputs.js"></script>
     <script src="./assets/js/utilitaries.js"></script>
     <script src="./assets/js/drawOnCanvas.js"></script>
@@ -253,5 +255,15 @@
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/easteregg.js"></script>
     <script src="./assets/js/cookies.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109130071-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109130071-1');
+    </script>
+
 </body>
 </html>

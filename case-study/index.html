@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="FR">
 <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
        
      <!-- Méta Google -->
@@ -40,7 +40,7 @@
     <meta name="msapplication-TileImage" content="../assets/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     
-    <title>Colorflow - Case Study</title>
+    <title>Case Study | Colorflow</title>
     <link rel="stylesheet" href="../main.css">
 </head>
 
@@ -125,7 +125,6 @@
             </a>
         </h1>
         <nav class="header__nav">
-<!--            <h2 class="title--sub">Obtiens la palette d'une image</h2>-->
             <ul class="space-between">
                 <li class="title title--normal title--bold"><a href="../index.html">Colorflow</a></li>
                 <li class="title title--normal title--bold"><a href="../a-propos/index.html">&Agrave; propos</a></li>
@@ -161,7 +160,7 @@
             <div class="problems__container problem">
                 <h4 class="col col--center title title--up title--bold">Développer proprement</h4>
                 <p class="col col--center">L'avantage du JavaScript, c'est qu'il est facile à coder. Il suffit de créer une fichier avec l'extension .js et de commencer à écrire. Le problème étant la tendance à avoir un code spaghetti une fois qu'il atteint les quelques dizaines ou centaines de lignes, c'est-à-dire qu'il devient peu clair car déstructuré et donc difficile à mettre à jour et à lire.</p>
-                <p class="col col--center">J'ai donc entrepris, avant de me lancer dans la programmation de Colorflow, de suivre un cours de JavaScript orienté objet sur <a href="https://www.udemy.com/learn-modern-javascript-advanced-topics/">Udemy</a> où j'ai pu apprendre une meilleure manière de coder. &Agrave; ce jour, je n'ai pas intrégré absolument toutes les notions, j'ai réussi à aboutir à avoir un code bien mieux structuré et maintenable. Je reviendrai sans doute sur ce cours (ou un autre) dans un futur proche afin d'assimiler ce qu'il me manque.</p>
+                <p class="col col--center">J'ai donc entrepris, avant de me lancer dans la programmation de Colorflow, de suivre un cours de JavaScript orienté objet sur <a class="link" href="https://www.udemy.com/learn-modern-javascript-advanced-topics/">Udemy</a> où j'ai pu apprendre une meilleure manière de coder. &Agrave; ce jour, je n'ai pas intrégré absolument toutes les notions, j'ai réussi à aboutir à avoir un code bien mieux structuré et maintenable. Je reviendrai sans doute sur ce cours (ou un autre) dans un futur proche afin d'assimiler ce qu'il me manque.</p>
             </div>                
             <div class="problems__container datas">
                 <h4 class="col col--center title title--up title--bold">Trop de données</h4>
@@ -174,10 +173,10 @@
                 </ul>
                 <p class="col col--center">Le premier problème vient du fait qu'une image contient énormément de pixels. Pour mes tests, j'ai utilisé un canvas de 600x375 pixels, ce qui me donne au total 900&nbsp;000 données de couleur (chaque pixel comporte les valeurs rouge, verte, bleue et alpha)! </p>
                 <div class="encart col col--center">
-                    <img class="" src="../assets/img/arraybuffer.JPG" alt="screenshot arrayBuffer">
+                    <img src="../assets/img/arraybuffer.png" alt="screenshot arrayBuffer" srcset="../assets/img/arraybuffer@2x.png, ../assets/img/arraybuffer@3x.png">
                     <p class="title col--center text--small">log de l'arrayBuffer d'une image 600x375px</p>
                 </div>
-                <p class="col col--center">En pratique, un canvas permet de récupérer quatre tableaux de valeurs (qui sont de type ArrayBuffer), mais seuls deux vont nous intéresser ici : <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Int32Array">Int32Array</a> et <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Uint8Array">Uint8Array</a>. Ce dernier contient 900&nbsp;000 valeurs qui sont triées par pixel [r1, g1, b1, a1, r2, g2, b2, a2, ...] et va nous servir pour l'algorithme. Quant à Int32Array, il contient 225&nbsp;000 données et la seule chose importante à savoir, c'est qu'une valeur égale à zéro est un pixel noir.</p>
+                <p class="col col--center">En pratique, un canvas permet de récupérer quatre tableaux de valeurs (qui sont de type ArrayBuffer), mais seuls deux vont nous intéresser ici : <a class="link" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Int32Array">Int32Array</a> et <a class="link" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Uint8Array">Uint8Array</a>. Ce dernier contient 900&nbsp;000 valeurs qui sont triées par pixel [r1, g1, b1, a1, r2, g2, b2, a2, ...] et va nous servir pour l'algorithme. Quant à Int32Array, il contient 225&nbsp;000 données et la seule chose importante à savoir, c'est qu'une valeur égale à zéro est un pixel noir.</p>
                 <p class="col col--center">Des 900&nbsp;000 valeurs, il est déjà possible de réduire ce nombre de 25&nbsp;% en enlevant la valeur alpha de transparence qui est toujours égale à 255 et qui n'a donc aucune utilité.</p>
                 <p class="col col--center">Je me retrouve donc avec un nombre de pixels qui reste conséquent. Après mes tests, les calculs pouvant prendre plusieurs secondes, j'ai pris la décision de créer un second canvas, invisible à l'écran, qui a une taille de 100 pixels au maximum (largeur ou hauteur), ce qui réduit sa surface drastiquement et rend le calcul de la palette bien plus court (de l'ordre de la centaine de millisecondes au maximum).</p>
                 <p class="col col--center">En revanche, les résultats entre un canvas ayant les dimensions de l'image originale et un canvas de 100 pixels maximum sont différents. C'est pourquoi j'ai introduit un bouton de précision sur la page afin de laisser le choix à l'utilisateur (100 ou 800 pixels maximum).</p>
@@ -232,7 +231,7 @@
             </div>
             <div class="problems__container mediancut">
                 <h4 class="col col--center title title--up title--bold">Median-cut algorithm</h4>
-                <p class="col col--center">Avant d'arriver à tous mes tests de performance, il m'a fallu construire l'algorithme qui est basé sur le <a href="https://en.wikipedia.org/wiki/Color_quantization">median-cut de Paul Heckbert</a>.</p>
+                <p class="col col--center">Avant d'arriver à tous mes tests de performance, il m'a fallu construire l'algorithme qui est basé sur le <a class="link"  href="https://en.wikipedia.org/wiki/Color_quantization">median-cut de Paul Heckbert</a>.</p>
                 <p class="col col--center">Métaphoriquement, le principe est de mettre tous les pixels dans un seau, puis de calculer la plus longue distance des valeurs r, g et b. La distance, c'est la différence entre la valeur maximale et minimale de tous les pixels.</p>
                 <p class="col col--center">Par exemple, si la distance du rouge est à 200, celle du vert à 198 et le bleu à 180, alors le median cut sera 200. C'est à ce stade que le seau initial est divisé en deux nouveaux seaux, où chaque pixel est transvasé selon le median cut. Si l'on fait la moyenne des valeurs r, g et b de chaque seau, on obtient deux couleurs. Et si l'on veut quatre couleurs, on refait l'opération sur chaque sous-seau.</p>
                 <p class="col col--center">Et c'est ici que le problème de division apparaît. Si je divise chaque seau en deux, j'aurai toujours un nombre de couleurs équivalent à 2<sup>n</sup>. Mais que se passe-t-il si je veux trois, cinq, six couleurs ? J'ai pris la décision, la plus simple et correcte de mon point de vue, de diviser à chaque fois le seau qui a le plus grand median cut, puisque c'est c'est là que se trouve la plus grande variance.</p>
@@ -248,11 +247,11 @@
                <div class="design__container design">
                 <h4 class="col col--center title title--up title--bold">Comparaison avec la concurrence</h4>
                 <p class="col col--center">Le plus étonnant est la différence entre mes résultats et ceux des sites concurrents. J'ai en général de bien meilleurs résultats, en particulier lorsqu'il s'agit de récupérer une couleur peu présente mais bien visible.</p>
-                <p class="col col--center">En regardant les codes de ces sites, je me suis aperçu que la plupart utilisait une libraire externe, <a href="https://gist.github.com/thinkxl/4262930">quantize.js</a>, pour effectuer le calcul. Cette librairie est bien plus complète que ce que j'ai codé, mais les résultats à la sortie sont moins bons. Je n'ai pas testé cette méthode sur mon site, et il s'agit peut-être simplement de mauvais paramétrage. </p>
+                <p class="col col--center">En regardant les codes de ces sites, je me suis aperçu que la plupart utilisait une libraire externe, <a  class="link" href="https://gist.github.com/thinkxl/4262930">quantize.js</a>, pour effectuer le calcul. Cette librairie est bien plus complète que ce que j'ai codé, mais les résultats à la sortie sont moins bons. Je n'ai pas testé cette méthode sur mon site, et il s'agit peut-être simplement de mauvais paramétrage. </p>
                 <div class="comparison col col--center">
                     <h4 class="title title--up title--bold">Une image parle mieux que des mots</h4>
                     <p>J'ai effectué plusieurs palettes d'une même image sur différents sites et je les ai compilés pour vous donner une idée des différences qu'il peut y avoir. Ces sites n'offrent pas de possiblité de choisir le nombre de couleurs, j'ai donc ajusté ma palette aux leurs.</p>
-                    <img class="comparison__img" src="../assets/img/imgtest.jpg" alt="image abstraite de test">
+                    <img class="comparison__img" src="../assets/img/img_init.jpg" alt="image abstraite de test" srcset="../assets/img/img_init@2x.jpg, ../assets/img/img_init@3x.jpg">
                     <ul class="comparison__colorflow">
                         <li class="comparison__title">Colorflow</li>
                         <li class="comparison__box"></li>
@@ -350,11 +349,11 @@
                 <p class="col col--center">J'ai donc cherché à créer une &laquo;safe zone&raquo; autour de l'image. Les couleurs étaient disposées en grille sous l'image avec sa quantité, son code hexadécimal et son nom. J'avais imaginé de dévoiler les codes sur la tuile qui se serait alors retournée. Enfin, après quelques itérations, j'ai placé un cadre avec quelques lignes d'explication de l'outil.</p>
                 <div class="design__interfaces">
                     <div class="center">
-                      <img src="../assets/img/interface_01.jpg" alt="premier design de Colorflow">
+                      <img src="../assets/img/interface_01.jpg" alt="premier design de Colorflow" srcset="../assets/img/interface_01@2x.jpg, ../assets/img/interface_01@3x.jpg">
                       <p class="title col--center text--small">Dernière itération avant de repartir de zéro.</p>
                     </div>
                     <div class="center">
-                    <img src="../assets/img/interface_02.jpg" alt="design final de Colorflow">
+                    <img src="../assets/img/interface_02.jpg" alt="design final de Colorflow" srcset="../assets/img/interface_02@2x.jpg, ../assets/img/interface_02@3x.jpg">
                     <p class="title col--center text--small">Une des dernières itérations avant le passage au code. La première roue a disparu au profit d'un switch.</p>
                     </div>
                 </div>
@@ -363,7 +362,7 @@
                 <h4 class="title title--up title--bold">Changement de cap</h4>
                 <p>Après plusieurs discussions, des problèmes évidents de design ont été mis en lumière. Si expliquer le fonctionnement du site peut sembler louable, il révèle surtout un mauvais design. Un site bien conçu doit être auto-suffisant, c'est-à-dire que l'utilisateur doit comprendre ce qu'il doit faire sans devoir l'obliger à lire une explication au préalable.</p>
                 <p>Le cadre explicatif a aussi l'inconvénient de prendre une place significative sur la page. De l'autre côté, centrer tous le contenu fait perdre beaucoup de place et oblige le scroll pour accéder aux couleurs. Ceci peut devenir problématique lorsque l'on veut passer des couleurs aux paramètres de l'image.</p>
-                <p>J'ai alors décidé de repartir de zéro. Les quelques références telles que <a href="https://color.adobe.com/">Adobe Colors</a> et <a href="https://coolors.co">Coolors</a> n'ont peu ou pas de scroll, tout est visible directement. Sachant que mon outil n'a que peu d'éléments (paramètre de précision, nombre de couleurs, tuiles de couleurs, codes et le canvas), il me semblait plus approprié de tout placer sur la largeur de la page, sans permettre de scroll (en version bureau du moins).</p>
+                <p>J'ai alors décidé de repartir de zéro. Les quelques références telles que <a class="link" href="https://color.adobe.com/">Adobe Colors</a> et <a class="link" href="https://coolors.co">Coolors</a> n'ont peu ou pas de scroll, tout est visible directement. Sachant que mon outil n'a que peu d'éléments (paramètre de précision, nombre de couleurs, tuiles de couleurs, codes et le canvas), il me semblait plus approprié de tout placer sur la largeur de la page, sans permettre de scroll (en version bureau du moins).</p>
                 <p>Pour simplifier l'utilisation, j'ai ajouté un overlay sur le canvas pour indiquer qu'il est possible de drag &amp; drop une image. En dessous, j'ai choisi de laisser une explication sur la sélection de zone. Enfin, le nombre de couleurs est représenté par une roue et la précision par un switch. &Agrave; noter que le switch était initialement une roue, mais n'était pas suffisamment explicite pour l'utilisateur, là où un choix binaire est plus clair.</p>
                 <p>Les couleurs sont disposées à la droite du canvas et sont visibles en permanence. Qu'il y en ait deux ou dix, les tuiles gardent la même dimension et sont triées par quantité. Pour terminer, les codes ne s'affichent qu'au clic d'une tuile, mais le squelette est toujours visible pour indiquer que oui, le site permet de les récupérer.</p>
             </div>
